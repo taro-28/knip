@@ -6,5 +6,6 @@
   },
   "devDependencies": {
     "unreferenced": "*"
-  }
+  },
+  "workspaces": ["packages/*"]
 }

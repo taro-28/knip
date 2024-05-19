@@ -72,8 +72,25 @@ export const One = 1;
   "dependencies": {
     "lodash": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "workspaces": [
+    "packages/*"
+  ]
 }
+`.replace(/\n/g, EOL),
+    ],
+    [
+      'packages/test/fuga.ts',
+      await readContents('packages/test/fuga.ts'),
+      `export const aaa = 'aaa';
+const bbb = 'bbb';
+`.replace(/\n/g, EOL),
+    ],
+    [
+      'packages/test/hoge.ts',
+      await readContents('packages/test/hoge.ts'),
+      `export const ccc = 'ccc';
+const ddd = 'ddd';
 `.replace(/\n/g, EOL),
     ],
   ];
@@ -92,6 +109,8 @@ export const One = 1;
   assert(issues.exports['mod.ts']['default']);
   assert(issues.exports['mod.ts']['x']);
   assert(issues.exports['mod.ts']['y']);
+  assert(issues.exports['packages/test/fuga.ts']['bbb']);
+  console.log(issues.exports['packages/test/hoge.ts']?.['ddd']);
 
   for (const [fileName, before, after] of tests) {
     const filePath = join(cwd, fileName);
