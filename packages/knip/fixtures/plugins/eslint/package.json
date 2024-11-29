@@ -7,6 +7,7 @@
     "@typescript-eslint/parser": "*",
     "eslint-config-prettier": "*",
     "eslint-plugin-no-secrets": "*",
-    "eslint-plugin-prettier": "*"
+    "eslint-plugin-prettier": "*",
+    "eslint-plugin-unused-imports": "*"
   }
 }
